@@ -1,0 +1,145 @@
+{
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+	"name": "SPECS Framework",
+	"patterns": [
+		{
+			"include": "#block"
+		},
+		{
+			"include": "#keywords"
+		},
+		{
+			"include": "#builtin_types"
+		},
+		{
+			"include": "#numerics"
+		},
+		{
+			"include": "#strings"
+		},
+		{
+			"include": "#variables"
+		}
+	],
+	"repository": {
+		"block": {
+			"patterns": [
+				{
+					"name": "meta.if.specsfwk",
+					"begin": "\\bIF\\b",
+					"beginCaptures": {
+						"0": {
+							"name": "punctuation.section.if.begin.specsfwk"
+						}
+					},
+					"end": "\\b(END IF|ELSE)\\b",
+					"endCaptures": {
+						"0": {
+							"name": "punctuation.section.if.end.specsfwk"
+						}
+					},
+					"patterns": [
+						{
+							"include": "#block_innards"
+						}
+					]
+				},
+				{
+					"name": "meta.while.specsfwk",
+					"begin": "\\b(WHILE|REPEAT)\\b",
+					"beginCaptures": {
+						"0": {
+							"name": "punctuation.section.while.begin.specsfwk"
+						}
+					},
+					"end": "\\b(END WHILE|UNTIL)\\b",
+					"endCaptures": {
+						"0": {
+							"name": "punctuation.section.while.end.specsfwk"
+						}
+					},
+					"patterns": [
+						{
+							"include": "#block_innards"
+						}
+					]
+				}
+			]
+		},
+		"block_innards": {
+			"patterns": [
+				{
+					"include": "#block"
+				},
+				{
+					"include": "#keywords"
+				},
+				{
+					"include": "#builtin_types"
+				},
+				{
+					"include": "#numerics"
+				},
+				{
+					"include": "#strings"
+				},
+				{
+					"include": "#variables"
+				}
+			]
+		},
+		"keywords": {
+			"patterns": [
+				{
+					"name": "keyword.control.specsfwk",
+					"match": "\\b(BODY|IF|ELSE|REPEAT|UNTIL|WHILE|END|GOTO|STOP|PAUSE)\\b"
+				},{
+					"name": "keyword.other.specsfwk",
+					"match": "\\b(ACTION|RUN|PANEL|REJECT|EXECUTE)\\b"
+				},{
+					"name": "keyword.operator.specsfwk",
+					"match": "\\b(LET|PRINT)\\b"
+				}
+			]
+		},
+		"builtin_types": {
+			"patterns": [
+				{
+					"name": "support.type.specsfwk",
+					"match": "\\b(INTEGER|REAL|STRING)\\b"
+				}
+			]
+		},
+		"numerics": {
+			"patterns": [
+				{
+					"name": "constant.numeric.integer.specsfwk",
+					"match": "\\b[0-9]+"
+				},{
+					"name": "constant.numeric.float.specsfwk",
+					"match": "(?<=[^0-9a-zA-Z_])(?i:(\\.\\d+(e[\\-\\+]?\\d+)?))"
+				}
+			]
+		},
+		"strings": {
+			"name": "string.quoted.double.specsfwk",
+			"begin": "\"",
+			"end": "\"",
+			"patterns": [
+				{
+					"name": "constant.character.escape.specsfwk",
+					"match": "\\\\."
+				}
+			]
+		},
+		"variables": {
+			"patterns": [
+				{
+					"name": "variable.other.specsfwk",
+					"match": "\\b\\$[A-Za-z0-9_]+"
+				}
+			]
+		}
+	},
+	"scopeName": "source.specsfwk"
+}

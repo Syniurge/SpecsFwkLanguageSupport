@@ -1,0 +1,25 @@
+{
+  "name": "specs-framework",
+  "displayName": "SPECS Framework",
+  "description": "FWK language support as alternative to tpledit",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "contributes": {
+    "languages": [{
+      "id": "specsfwk",
+      "aliases": ["SPECS Framework", "specsfwk"],
+      "extensions": [".action",".tag",".system",".panel"],
+      "configuration": "./language-configuration.json"
+    }],
+    "grammars": [{
+      "language": "specsfwk",
+      "scopeName": "source.specsfwk",
+      "path": "./syntaxes/specsfwk.tmLanguage.json"
+    }]
+  }
+}
